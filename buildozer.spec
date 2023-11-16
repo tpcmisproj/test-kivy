@@ -4,10 +4,10 @@
 title = My Application
 
 # (str) Package name
-package.name = Facilities Monitoring
+package.name = tpcmonitoring
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = facilities.monitoring.tpc
+package.domain = org.test
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy, kivymd
-requirements = python3==3.7.6,hostpython3==3.7.6,Kivy==2.1.0,kivymd==1.0.2,Requests==2.31.0,Pillow,hashlib,json,os
+requirements = python3==3.7.6,hostpython3==3.7.6,Kivy==2.1.0,kivymd==1.0.2,Requests==2.31.0,Pillow
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
@@ -50,7 +50,7 @@ requirements = python3==3.7.6,hostpython3==3.7.6,Kivy==2.1.0,kivymd==1.0.2,Reque
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
-orientation = portrait
+orientation = portrait,landscape
 
 # (list) List of service to declare
 #services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT2_TO_PY
