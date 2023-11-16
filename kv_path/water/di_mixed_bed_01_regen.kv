@@ -1,0 +1,163 @@
+<RightContentCls>
+    disabled: True
+    adaptive_size: True
+    pos_hint: {"center_y": .5}
+
+    MDIconButton:
+        icon: root.icon
+        user_font_size: "16sp"
+        md_bg_color_disabled: 0, 0, 0, 0
+
+    MDLabel:
+        text: root.text
+        font_style: "Caption"
+        adaptive_size: True
+        pos_hint: {"center_y": .5}
+
+
+<Item>
+    IconLeftWidget:
+        icon: root.left_icon
+
+    RightContentCls:
+        id: container
+        icon: root.right_icon
+        text: root.right_text
+
+# ScreenManager:
+#     MainMenu:
+#     GasMenu:
+#     WaterMenu:
+#     GasMenuH2Gas:
+    
+    
+<DiMixedBed01Regen>:
+    name: 'di_mixed_bed_01_regen'
+    BoxLayout:
+        orientation: 'vertical'
+
+    MDNavigationLayout:
+
+        ScreenManager:
+
+            Screen:
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "DI MIXED BET 01 REGEN"
+                        elevation: 4
+                        pos_hint: {"top": 1}
+                        md_bg_color: "#ffa500"
+                        specific_text_color: "#4a4939"
+                        left_action_items: [['arrow-left', lambda x: root.change_screen('water_main_menu')]]
+                        right_action_items: [["dots-vertical", lambda x: app.callback(x)]]
+                           
+                       
+
+                    MDBottomNavigation:
+                        selected_color_background: "orange"
+                        text_color_active: "lightgrey"
+            
+                        MDBottomNavigationItem:
+                            name: 'gas1'
+                            text: 'H2 GAS'
+                            icon: 'fire-circle'
+                            
+                            GridLayout:
+                                cols: 2
+                                padding: dp(16)
+                                spacing: dp(10)
+
+
+                                MDTextField:
+                                    id: tech_shift
+                                    hint_text: 'Click me to show shift'
+                                    mode: "rectangle"
+                                    on_focus: app.show_drop_down(self, self.focus)
+
+
+                                MDTextField:
+                                    hint_text: "Tech No."
+                                    id: emp_no
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    id: datetime_text
+                                    hint_text: "Date/Time Encode"
+                                    mode: "rectangle"
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    readonly: True
+                                    on_focus: if self.focus: app.show_datetime_picker()
+
+                                MDTextField:
+                                    hint_text: "Temperature"
+                                    id: temp
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Nitrogen"
+                                    id: n_pressure
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Pressure"
+                                    id: p_pressure
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Nit cyl pressure reading"
+                                    id: n_cylinder_pressure
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Pri Pressure gauge BH2"
+                                    id: p_pressure_gauge_bhs2
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Pri Pressure gauge Pallet"
+                                    id: p_pressure_gauge_pallet
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Remarks"
+                                    id: remarks
+                                    mode: "rectangle"
+                                    multiline: True
+                                    
+                                MDTextField:
+                                    hint_text: "Seco Pressure gauge BH2"
+                                    id: s_pressure_gauge
+                                    mode: "rectangle"
+                                    
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                spacing: dp(10)
+                                padding: dp(16)  # Add padding here
+
+                                Widget:  # Spacer to push the button to the right
+                                
+                                MDRaisedButton:
+                                    text: "Save"
+                                    size_hint: None, None
+                                    size: "340dp", "90dp"
+                                    on_press: app.insert_to_database()  # Replace with your button press function    
+                                    
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                spacing: dp(10)
+                                padding: dp(16)  # Add padding here
+
+                                Widget:  # Spacer to push the button to the right
+                                
+                                MDRaisedButton:
+                                    text: "Save"
+                                    size_hint: None, None
+                                    size: "340dp", "90dp"
+                                    on_press: app.insert_to_database()  # Replace with your button press function      

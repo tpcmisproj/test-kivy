@@ -1,0 +1,51 @@
+            
+<RightContentCls>
+    disabled: True
+    adaptive_size: True
+    pos_hint: {"center_y": .5}
+
+    MDIconButton:
+        icon: root.icon
+        user_font_size: "16sp"
+        md_bg_color_disabled: 0, 0, 0, 0
+
+    MDLabel:
+        text: root.text
+        font_style: "Caption"
+        adaptive_size: True
+        pos_hint: {"center_y": .5}
+
+
+<Item>
+    IconLeftWidget:
+        icon: root.left_icon
+
+    RightContentCls:
+        id: container
+        icon: root.right_icon
+        text: root.right_text
+
+    
+            
+<H2Gas>:
+    name: 'h2gas'
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDNavigationLayout:
+
+            MDScreenManager:
+
+                MDScreen:
+
+                    BoxLayout:
+                        orientation: 'vertical'
+
+                        MDTopAppBar:
+                            title: "H2 GASS"
+                            elevation: 4
+                            pos_hint: {"top": 1}
+                            md_bg_color: "#ffa500"
+                            specific_text_color: "#4a4939"
+                            left_action_items: [['arrow-left', lambda x: root.change_screen('gas')]]
+                            right_action_items: [["dots-vertical", lambda x: app.callback(x)]]

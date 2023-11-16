@@ -1,0 +1,150 @@
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#ffa500"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+    text_align: "left"  # Set the text alignment to left
+
+<WaterMainMenu>:
+    name: 'water_main_menu'
+    BoxLayout:
+        orientation: 'vertical'
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+
+                MDTopAppBar:
+                    title: "Water"
+                    elevation: 4
+                    pos_hint: {"top": 1}
+                    md_bg_color: "#ffa500"
+                    specific_text_color: "#4a4939"
+                    left_action_items: [['arrow-left', lambda x: root.change_screen('menu')]]
+                    right_action_items: [["dots-vertical", lambda x: app.callback(x)]]
+                        
+                MDScrollView:
+                    pos_hint: {"top": 0.89}
+                    MDList:
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'de_ionized_water'
+                            text: 'DE-IONIZED WATER'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'deep_well_no_01'
+                            text: 'DEEP WELL NO. 01'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'deep_well_no_02'
+                            text: 'DEEP WELL NO. 02'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_acf'
+                            text: 'DI ACF'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_anion_bed_01_regen'
+                            text: 'DI ANION BED 01 REGEN'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_anion_bed_02_regen'
+                            text: 'DI ANION BED 02 REGEN'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_cation_bed_01_regen'
+                            text: 'DI CATION BED 01 REGEN'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_cation_bed_02_regen'
+                            text: 'DI CATION BED 02 REGEN'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_dual_bed_01'
+                            text: 'DI DUAL BED 01'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_dual_bed_02'
+                            text: 'DI DUAL BED 02'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_filter_replacement'
+                            text: 'DI FILTER REPLACEMENT'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_mixed_bed_01'
+                            text: 'DI MIXED BED 01'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_mixed_bed_01_regen'
+                            text: 'DI MIXED BED 01-REGEN'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_mixed_bed_02'
+                            text: 'DI MIXED BED 02'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_mixed_bed_02_regen'
+                            text: 'DI MIXED BED 02-REGEN'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_polishing_tank_replacement'
+                            text: 'DI POLISHING TANK REPLACEMENT'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_tank_bldg_1_point_of_use'
+                            text: 'DI TANK - BLDG 1 POINT OF USE'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_water_analysis_class_b'
+                            text: 'DI WATER ANALYSIS - Class B'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'di_water_analysis_class_c'
+                            text: 'DI WATER ANALYSIS - Class C'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'uv_light_sterilizer'
+                            text: 'UV LIGHT STERILIZER'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'water_consumption'
+                            text: 'WATER CONSUMPTION'
+                            IconRightWidget:
+                                icon: "water-circle"
+                        OneLineAvatarIconListItem:
+                            on_release: root.manager.current = 'wwtp'
+                            text: 'WWTP'
+                            IconRightWidget:
+                                icon: "water-circle"
+
+                        

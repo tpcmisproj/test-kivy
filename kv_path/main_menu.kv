@@ -1,0 +1,114 @@
+         
+<RightContentCls>
+    disabled: True
+    adaptive_size: True
+    pos_hint: {"center_y": .5}
+
+    MDIconButton:
+        icon: root.icon
+        user_font_size: "16sp"
+        md_bg_color_disabled: 0, 0, 0, 0
+
+    MDLabel:
+        text: root.text
+        font_style: "Caption"
+        adaptive_size: True
+        pos_hint: {"center_y": .5}
+
+
+<Item>
+    IconLeftWidget:
+        icon: root.left_icon
+
+    RightContentCls:
+        id: container
+        icon: root.right_icon
+        text: root.right_text
+
+
+<MainMenu>:
+    name: 'menu'
+    BoxLayout:
+        orientation: 'vertical'
+
+    MDNavigationLayout:
+
+        ScreenManager:
+
+            Screen:
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "Navigation Drawer"
+                        elevation: 4
+                        pos_hint: {"top": 1}
+                        md_bg_color: "#ffa500"
+                        specific_text_color: "#4a4939"
+                        left_action_items:
+                            [['menu', lambda x: nav_drawer.set_state("open")],['theme-light-dark', lambda x: app.switch_theme_style()]]
+                        right_action_items:
+                            [["logout", lambda x: app.callback(x)]]
+                           
+
+                    MDBottomNavigation:
+                        selected_color_background: "orange"
+                        text_color_active: "lightgrey"
+
+                        MDBottomNavigationItem:
+                            name: 'screen 6'
+                            text: 'Mail'
+                            icon: 'gmail'
+                            
+                            
+                            MDLabel:
+                                text: 'TEST'
+                                halign: 'center'
+                                
+                        MDBottomNavigationItem:
+                            name: 'screen 3'
+                            text: 'LinkedIN'
+                            icon: 'linkedin'
+
+                            MDLabel:
+                                text: 'LinkedIN'
+                                halign: 'center'
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerHeader:
+                    title: "Facilities Monitoring"
+                    title_color: "#4a4939"
+                    #text: "Application for Facilities Monitoring"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "56dp"
+
+                MDNavigationDrawerLabel:
+                    text: "Menu"
+                
+                DrawerClickableItem:
+                    icon: "lightning-bolt-circle"
+                    text: "Power"
+
+                DrawerClickableItem:
+                    icon: "fire-circle"
+                    right_text: "+99"
+                    text_right_color: "#4a4939"
+                    text: "Gas"
+                    on_press: root.manager.current = 'gas'
+                    
+
+                DrawerClickableItem:
+                    icon: "water-circle"
+                    text: "Water"
+                    on_press: root.manager.current = 'water_main_menu'
+
+                MDNavigationDrawerDivider:
+
+                ContentNavigationDrawer:
+                
