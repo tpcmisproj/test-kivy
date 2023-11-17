@@ -71,13 +71,11 @@
                                 padding: dp(16)
                                 spacing: dp(10)
 
-
                                 MDTextField:
                                     id: tech_shift
                                     hint_text: 'Click me to show shift'
                                     mode: "rectangle"
                                     on_focus: app.show_drop_down(self, self.focus)
-
 
                                 MDTextField:
                                     hint_text: "Tech No."
@@ -85,7 +83,7 @@
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    id: datetime_text
+                                    id: date_time_encode_h2_gas
                                     hint_text: "Date/Time Encode"
                                     mode: "rectangle"
                                     pos_hint: {'center_x': .5, 'center_y': .5}
@@ -127,11 +125,12 @@
                                     id: remarks
                                     mode: "rectangle"
                                     multiline: True
-                                    
+
                                 MDTextField:
                                     hint_text: "Seco Pressure gauge BH2"
                                     id: s_pressure_gauge
                                     mode: "rectangle"
+
                                     
                             BoxLayout:
                                 orientation: 'horizontal'
@@ -146,7 +145,7 @@
                                     text: "Save"
                                     size_hint: None, None
                                     size: "340dp", "90dp"
-                                    on_press: app.insert_to_database()  # Replace with your button press function          
+                                    on_press: app.insert_to_database_h2_gas()  # Replace with your button press function          
 
                         MDBottomNavigationItem:
                             name: 'gas2'
@@ -158,20 +157,19 @@
                                 padding: dp(16)
                                 spacing: dp(10)
 
-
                                 MDTextField:
-                                    id: tech_shift
-                                    hint_text: 'Click me to show shift'
+                                    hint_text: "Shift"
+                                    id: shift_n2
                                     mode: "rectangle"
                                     on_focus: app.show_drop_down(self, self.focus)
 
                                 MDTextField:
+                                    id: tech_no
                                     hint_text: "Tech No."
-                                    id: emp_no
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    id: datetime_text
+                                    id: date_time_encode_n2_gas
                                     hint_text: "Date/Time Encode"
                                     mode: "rectangle"
                                     pos_hint: {'center_x': .5, 'center_y': .5}
@@ -179,45 +177,40 @@
                                     on_focus: if self.focus: app.show_datetime_picker()
 
                                 MDTextField:
-                                    hint_text: "N2 LEVEL mm of H2O "
-                                    id: n_lvl
+                                    id: n2_level_mm_of_h2o
+                                    hint_text: "N2 LEVEL mm of H2O"
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "INVENTORY in Gallons"
-                                    id: i_gallons
-                                    mode: "rectangle"
-
-                                MDTextField:
+                                    id: inventory_m3
                                     hint_text: "INVENTORY in mÂ³"
-                                    id: i_ma
                                     mode: "rectangle"
 
                                 MDTextField:
+                                    id: pressure_psi
                                     hint_text: "PRESSURE in PSI (160 max)"
-                                    id: p_in_psi
                                     mode: "rectangle"
 
                                 MDTextField:
+                                    id: volume_percentage
                                     hint_text: "% Volume"
-                                    id: volume
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "PPM (30 max) "
-                                    id: ppm_max
+                                    id: ppm
+                                    hint_text: "PPM"
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Vaporizer Use No.1 / No.2 "
-                                    id: vaporizer_use
+                                    id: vaporizer_use_no_1_no_2
+                                    hint_text: "Vaporizer Use No.1 / No.2"
                                     mode: "rectangle"
-                                    multiline: True
-                                    
+
                                 MDTextField:
-                                    hint_text: "Remarks"
                                     id: remarks
+                                    hint_text: "Remarks"
                                     mode: "rectangle"
+
                                     
                             BoxLayout:
                                 orientation: 'horizontal'
@@ -232,4 +225,4 @@
                                     text: "Save"
                                     size_hint: None, None
                                     size: "340dp", "90dp"
-                                    on_press: app.insert_to_database()  # Replace with your button press function      
+                                    on_press: app.insert_to_database_n2_liquid()  # Replace with your button press function      

@@ -2,6 +2,7 @@ import os
 import sqlite3
 import json
 import requests
+from datetime import datetime
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.uix.image import Image
@@ -22,6 +23,7 @@ from kivy.clock import Clock
 from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.icon_definitions import md_icons
+from models import CreateDatabase, InsertData
 
 
 class Tab(MDFloatLayout, MDTabsBase):
@@ -316,6 +318,8 @@ class MainApp(MDApp):
         self.load_all_menu_kv_files()
         self.load_all_water_kv_files()
         self.load_all_gas_kv_files()
+        gas_data_creator = CreateDatabase()
+        gas_data_creator.create_database()
 
     def load_all_menu_kv_files(self):
         kv_files_directory = os.path.join(
@@ -331,32 +335,6 @@ class MainApp(MDApp):
         kv_files_directory = os.path.join(os.path.dirname(
             os.path.abspath(__file__)), 'kv_path/gas')
         return load_kv_files(kv_files_directory)
-
-    def create_database(self):
-        db_file = 'gas_data.db'
-        if not os.path.exists(db_file):
-            conn = sqlite3.connect(db_file)
-            cursor = conn.cursor()
-
-            cursor.execute('''
-                CREATE TABLE h2gas (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Date TEXT,
-                    Shift TEXT,
-                    Temperature TEXT,
-                    Nitrogen TEXT,
-                    Pressure TEXT,
-                    NitrogenCylinderPressure TEXT,
-                    PrimaryPressureGaugeBH2 TEXT,
-                    Time TEXT,
-                    PrimaryPressureGaugePallet TEXT,
-                    Remarks TEXT,
-                    SecondaryPressureGaugeBH2 TEXT
-                )
-            ''')
-
-            conn.commit()
-            conn.close()
 
     def build(self):
         self.theme_cls.theme_style_switch_animation = True
@@ -461,7 +439,8 @@ class MainApp(MDApp):
     def get_time(self, instance, time):
         print(f"==>> time: {time}")
         datetime_str = f"{self.selected_date.strftime('%Y-%m-%d')} {time}"
-        self.root.get_screen('gas').ids.datetime_text.text = datetime_str
+        self.root.get_screen('gas').ids.date_time_encode_h2_gas.text = datetime_str
+        self.root.get_screen('gas').ids.date_time_encode_n2_gas.text = datetime_str
 
     def show_drop_down(self, instance_textfield, instance_focus):
         if instance_focus:
@@ -484,17 +463,21 @@ class MainApp(MDApp):
             self.menu.open()
 
     def set_item(self, text_item):
-        self.menu.dismiss()
         self.root.get_screen('gas').ids.tech_shift.text = text_item
+        self.root.get_screen('gas').ids.shift_n2.text = text_item
+        # self.root.get_screen('gas').ids.date.text = date
+        # self.root.get_screen('gas').ids.time.text = time
+        self.menu.dismiss()
 
-    def insert_to_database(self):
-        self.create_database()
+    def insert_to_database_h2_gas(self):
 
-        conn = sqlite3.connect('gas_data.db')
-        cursor = conn.cursor()
-
-        date = self.root.get_screen('gas').ids.date.text
+        current_datetime = datetime.now()
+        time = current_datetime.strftime("%H:%M:%S")
+        date = current_datetime.strftime("%Y-%d-%m")
         tech_shift = self.root.get_screen('gas').ids.tech_shift.text
+        emp_no = self.root.get_screen('gas').ids.emp_no.text
+        date_time_encode = self.root.get_screen(
+            'gas').ids.date_time_encode.text
         temp = self.root.get_screen('gas').ids.temp.text
         n_pressure = self.root.get_screen('gas').ids.n_pressure.text
         p_pressure = self.root.get_screen('gas').ids.p_pressure.text
@@ -502,62 +485,43 @@ class MainApp(MDApp):
             'gas').ids.n_cylinder_pressure.text
         p_pressure_gauge_bhs2 = self.root.get_screen(
             'gas').ids.p_pressure_gauge_bhs2.text
-        time = self.root.get_screen('gas').ids.time.text
         p_pressure_gauge_pallet = self.root.get_screen(
             'gas').ids.p_pressure_gauge_pallet.text
         remarks = self.root.get_screen('gas').ids.remarks.text
         s_pressure_gauge = self.root.get_screen(
             'gas').ids.s_pressure_gauge.text
 
-        query = """
-            INSERT INTO ShiftData
-            (Date, Shift, Temperature, Nitrogen, Pressure, NitrogenCylinderPressure,
-            PrimaryPressureGaugeBH2, Time, PrimaryPressureGaugePallet,
-            Remarks, SecondaryPressureGaugeBH2)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """
+        data_dict = {
+            'date': date,
+            'time': time,
+            'tech_shift': tech_shift,
+            'emp_no': emp_no,
+            'date_time_encode': date_time_encode,
+            'temp': temp,
+            'n_pressure': n_pressure,
+            'p_pressure': p_pressure,
+            'n_cylinder_pressure': n_cylinder_pressure,
+            'p_pressure_gauge_bhs2': p_pressure_gauge_bhs2,
+            'p_pressure_gauge_pallet': p_pressure_gauge_pallet,
+            'remarks': remarks,
+            's_pressure_gauge': s_pressure_gauge
+        }
 
-        data = (date, tech_shift, temp, n_pressure, p_pressure, n_cylinder_pressure,
-                p_pressure_gauge_bhs2, time, p_pressure_gauge_pallet,
-                remarks, s_pressure_gauge)
+        models_insert = InsertData(data_dict)
+        models_insert.insert_h2_gass()
 
-        if date == '' or tech_shift == '' or temp == '' or n_pressure == '' or p_pressure == '' or n_cylinder_pressure == '' or p_pressure_gauge_bhs2 == '' or time == '' or p_pressure_gauge_pallet == '' or remarks == '' or s_pressure_gauge == '':
-            dialog = MDDialog(
-                title="Error Something went Wrong",
-                radius=[20, 7, 20, 7],
-                text="Error: Data fields cannot be empty.",
-                buttons=[MDRaisedButton(
-                    text="OK", on_release=lambda _: dialog.dismiss())]
-            )
-            dialog.open()
-        else:
-            try:
-                cursor.execute(query, data)
-                conn.commit()
-                dialog = MDDialog(
-                    title="Successfully Inserted!",
-                    text="Data inserted into the database.",
-                    radius=[20, 7, 20, 7],
-                    buttons=[MDRaisedButton(
-                        text="OK", on_release=lambda _: dialog.dismiss())]
-                )
-
-                dialog.open()
-
-                print('Success')
-            except Exception as e:
-                dialog = MDDialog(
-                    title="Error Something went Wrong",
-                    radius=[20, 7, 20, 7],
-                    text=f"Error: {str(e)}.",
-                    buttons=[MDRaisedButton(
-                        text="OK", on_release=lambda _: dialog.dismiss())]
-                )
-                dialog.open()
-
-            finally:
-
-                conn.close()
+    def insert_to_database_n2_liquid(self):
+        pass
+        # shift_n2
+        # tech_no
+        # date_time_encode
+        # n2_level_mm_of_h2o
+        # inventory_m3
+        # pressure_psi
+        # volume_percentage
+        # ppm
+        # vaporizer_use_no_1_no_2
+        # remarks
 
 
 MainApp().run()

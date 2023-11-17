@@ -72,7 +72,7 @@
 
 
                                 MDTextField:
-                                    id: tech_shift
+                                    id: shift
                                     hint_text: 'Click me to show shift'
                                     mode: "rectangle"
                                     on_focus: app.show_drop_down(self, self.focus)
@@ -80,11 +80,16 @@
 
                                 MDTextField:
                                     hint_text: "Tech No."
-                                    id: emp_no
+                                    id: tech_no
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    id: datetime_text
+                                    hint_text: "Tech No."
+                                    id: tech_no
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    id: datetime_encode
                                     hint_text: "Date/Time Encode"
                                     mode: "rectangle"
                                     pos_hint: {'center_x': .5, 'center_y': .5}
@@ -92,23 +97,23 @@
                                     on_focus: if self.focus: app.show_datetime_picker()
 
                                 MDTextField:
-                                    hint_text: "Temperature"
-                                    id: temp
+                                    id: di_water_gallons
+                                    hint_text: "DI water (gallons)"
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Nitrogen"
-                                    id: n_pressure
+                                    hint_text: "DI Flow (gpm)"
+                                    id: di_flow_gpm
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Pressure"
-                                    id: p_pressure
+                                    hint_text: "Resistivity - Bdg 1 (M ohm)"
+                                    id: resistivity_bdg1
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Nit cyl pressure reading"
-                                    id: n_cylinder_pressure
+                                    hint_text: "Resistivity - Bdg 2 (M ohm)"
+                                    id: resistivity_bdg2
                                     mode: "rectangle"
 
                                 MDTextField:
@@ -117,20 +122,10 @@
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Pri Pressure gauge Pallet"
-                                    id: p_pressure_gauge_pallet
-                                    mode: "rectangle"
-
-                                MDTextField:
                                     hint_text: "Remarks"
                                     id: remarks
                                     mode: "rectangle"
                                     multiline: True
-                                    
-                                MDTextField:
-                                    hint_text: "Seco Pressure gauge BH2"
-                                    id: s_pressure_gauge
-                                    mode: "rectangle"
                                     
                             BoxLayout:
                                 orientation: 'horizontal'

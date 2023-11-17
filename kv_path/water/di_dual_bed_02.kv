@@ -31,8 +31,8 @@
 #     GasMenuH2Gas:
     
     
-<DiDualBed02>:
-    name: 'di_dual_bed_02'
+<DiDualBed01>:
+    name: 'di_dual_bed_01'
     BoxLayout:
         orientation: 'vertical'
 
@@ -46,7 +46,7 @@
                     orientation: 'vertical'
 
                     MDTopAppBar:
-                        title: "DI DUAL BED 02"
+                        title: "DI DUAL BED 01"
                         elevation: 4
                         pos_hint: {"top": 1}
                         md_bg_color: "#ffa500"
@@ -72,7 +72,7 @@
 
 
                                 MDTextField:
-                                    id: tech_shift
+                                    id: shift
                                     hint_text: 'Click me to show shift'
                                     mode: "rectangle"
                                     on_focus: app.show_drop_down(self, self.focus)
@@ -80,11 +80,11 @@
 
                                 MDTextField:
                                     hint_text: "Tech No."
-                                    id: emp_no
+                                    id: tech_no
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    id: datetime_text
+                                    id: date_time_encode
                                     hint_text: "Date/Time Encode"
                                     mode: "rectangle"
                                     pos_hint: {'center_x': .5, 'center_y': .5}
@@ -92,45 +92,45 @@
                                     on_focus: if self.focus: app.show_datetime_picker()
 
                                 MDTextField:
-                                    hint_text: "Temperature"
-                                    id: temp
+                                    hint_text: "Flow Rate (LPH)"
+                                    id: flow_rate
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Nitrogen"
-                                    id: n_pressure
+                                    hint_text: "ACF Pressure IN (psi)"
+                                    id: acf_pressure_in
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Pressure"
-                                    id: p_pressure
+                                    hint_text: "Cation Pressure In (psi)"
+                                    id: cation_pressure_in
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Nit cyl pressure reading"
-                                    id: n_cylinder_pressure
+                                    hint_text: "Cation Pressure Out (psi)"
+                                    id: cation_pressure_out
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Pri Pressure gauge BH2"
-                                    id: p_pressure_gauge_bhs2
+                                    hint_text: "Cation pH"
+                                    id: cation_pH
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Pri Pressure gauge Pallet"
-                                    id: p_pressure_gauge_pallet
+                                    hint_text: "Anion Tank Conductivity (micro mhos)"
+                                    id: anion_tank_conductivity_micro_mhos
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Remarks"
-                                    id: remarks
+                                    hint_text: "Anion Tank pH"
+                                    id: anion_tank_pH
                                     mode: "rectangle"
-                                    multiline: True
                                     
                                 MDTextField:
-                                    hint_text: "Seco Pressure gauge BH2"
+                                    hint_text: "remarks"
                                     id: s_pressure_gauge
                                     mode: "rectangle"
+                                    multiline: True
                                     
                             BoxLayout:
                                 orientation: 'horizontal'

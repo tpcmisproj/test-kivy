@@ -72,7 +72,7 @@
 
 
                                 MDTextField:
-                                    id: tech_shift
+                                    id: shift
                                     hint_text: 'Click me to show shift'
                                     mode: "rectangle"
                                     on_focus: app.show_drop_down(self, self.focus)
@@ -80,11 +80,11 @@
 
                                 MDTextField:
                                     hint_text: "Tech No."
-                                    id: emp_no
+                                    id: tech_no
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    id: datetime_text
+                                    id: date_time_encode
                                     hint_text: "Date/Time Encode"
                                     mode: "rectangle"
                                     pos_hint: {'center_x': .5, 'center_y': .5}
@@ -92,33 +92,58 @@
                                     on_focus: if self.focus: app.show_datetime_picker()
 
                                 MDTextField:
-                                    hint_text: "Temperature"
-                                    id: temp
+                                    hint_text: "Back Wash Flowrate (LPH)"
+                                    id: back_wash_flowrate
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Nitrogen"
-                                    id: n_pressure
+                                    hint_text: "Back Wash Time (min)"
+                                    id: back_wash_time
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Pressure"
-                                    id: p_pressure
+                                    hint_text: "Settling Time (min)"
+                                    id: settling_time
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Nit cyl pressure reading"
-                                    id: n_cylinder_pressure
+                                    hint_text: "Chem - Water Injection Flowrate (LPH)"
+                                    id: chem_water_injection_flowrate
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Pri Pressure gauge BH2"
-                                    id: p_pressure_gauge_bhs2
+                                    hint_text: "Chem - Water Injection Time (min)"
+                                    id: chem_water_injection_time
                                     mode: "rectangle"
 
                                 MDTextField:
-                                    hint_text: "Pri Pressure gauge Pallet"
-                                    id: p_pressure_gauge_pallet
+                                    hint_text: "Slow Rinse Flowrate (LPH)"
+                                    id: slow_rinse_flowrate
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Slow Rinse Time (min)"
+                                    id: slow_rinse_time
+                                    mode: "rectangle"
+                                    
+                                MDTextField:
+                                    hint_text: "Seco Pressure gauge BH2"
+                                    id: s_pressure_gauge
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Fast Rinse Flowrate (LPH)"
+                                    id: fast_rinse_flowrate
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Fast Rinse Time (min)"
+                                    id: fast_rinse_time
+                                    mode: "rectangle"
+
+                                MDTextField:
+                                    hint_text: "Amount of Chemical Used"
+                                    id: amount_of_chemical_used
                                     mode: "rectangle"
 
                                 MDTextField:
@@ -126,11 +151,6 @@
                                     id: remarks
                                     mode: "rectangle"
                                     multiline: True
-                                    
-                                MDTextField:
-                                    hint_text: "Seco Pressure gauge BH2"
-                                    id: s_pressure_gauge
-                                    mode: "rectangle"
                                     
                             BoxLayout:
                                 orientation: 'horizontal'
